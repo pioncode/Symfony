@@ -1,6 +1,6 @@
 <?php
 
-namespace Pion\IPerUploaderBundle\Tests\Controller;
+namespace Pion\IperBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

@@ -1,0 +1,3 @@
+pion_iper_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: PionIperBundle:Default:index }

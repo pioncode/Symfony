@@ -1,7 +1,7 @@
-pion_i_per_uploader:
-    resource: "@PionIPerUploaderBundle/Controller/"
-    type:     annotation
+pion_iper:
+    resource: "@PionIperBundle/Resources/config/routing.yml"
     prefix:   /
+
 
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
