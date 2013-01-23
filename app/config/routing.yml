@@ -9,5 +9,5 @@ pion_iper:
 # see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
 # ****** WARNING ******
 #_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal
+    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+    prefix:   /_internal
