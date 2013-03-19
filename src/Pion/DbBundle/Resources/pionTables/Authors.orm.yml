@@ -1,0 +1,71 @@
+Authors:
+    type: entity
+    table: authors
+    fields:
+        recno:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: SEQUENCE
+        firstName:
+            type: string
+            length: 100
+            fixed: false
+            nullable: false
+            column: first_name
+        lastName:
+            type: string
+            length: 100
+            fixed: false
+            nullable: false
+            column: last_name
+        paperid:
+            type: string
+            length: null
+            fixed: true
+            nullable: false
+        position:
+            type: smallint
+            nullable: false
+        designator:
+            type: string
+            length: null
+            fixed: true
+            nullable: true
+        lastNameNormalised:
+            type: string
+            length: null
+            fixed: false
+            nullable: true
+            column: last_name_normalised
+        suffix:
+            type: string
+            length: null
+            fixed: false
+            nullable: true
+        correspAuth:
+            type: boolean
+            nullable: true
+            column: corresp_auth
+        footnote:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+        email:
+            type: string
+            length: 500
+            fixed: false
+            nullable: true
+        affilnum:
+            type: smallint
+            nullable: true
+        talkId:
+            type: string
+            length: 8
+            fixed: false
+            nullable: true
+            column: talk_id
+    lifecycleCallbacks: {  }

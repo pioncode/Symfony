@@ -1,0 +1,37 @@
+<?php
+
+namespace Pion\DbBundle\Resources\DoctrinePostgresTypes;
+
+use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+ 
+/**
+* Type that maps an CIDR SQL to php objects
+* @author Rory Clarke
+*/
+class CIDR extends Type
+{
+const CIDR = 'cidr';
+ 
+public function getName()
+{
+return self::CIDR;
+}
+ 
+public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+{
+return $platform->getDoctrineTypeMapping('CIDR');
+}
+ 
+public function convertToDatabaseValue($value, AbstractPlatform $platform)
+{
+return ($value === null) ? null : string($value);
+}
+ 
+public function convertToPHPValue($value, AbstractPlatform $platform)
+{
+return ($value === null) ? null : string($value);
+}
+}
+ 
+?>

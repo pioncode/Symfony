@@ -1,14 +1,14 @@
 parameters:
-    database_driver: pdo_mysql
+    database_driver: pdo_pgsql
     database_host: 127.0.0.1
-    database_port: null
-    database_name: symfony
-    database_user: root
-    database_password: null
+    database_port: '5432'
+    database_name: journals_test
+    database_user: postgres
+    database_password: digbydog1
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
     locale: en
-    secret: 231251b9a58a06fc435d92198e9c025434565461
+    secret: 4f3ce6ba76d1a7e874e949a8a28107bab
     database_path: null

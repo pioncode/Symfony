@@ -1,0 +1,140 @@
+Papers:
+    type: entity
+    table: papers
+    fields:
+        paperid:
+            id: true
+            type: string
+            length: null
+            fixed: true
+            nullable: false
+            generator:
+                strategy: SEQUENCE
+        journal:
+            type: string
+            length: null
+            fixed: true
+            nullable: true
+        volume:
+            type: smallint
+            nullable: true
+        year:
+            type: string
+            length: null
+            fixed: true
+            nullable: true
+        issue:
+            type: smallint
+            nullable: true
+        title:
+            type: string
+            length: 300
+            fixed: false
+            nullable: true
+        received:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+        abstract:
+            type: string
+            length: 10000
+            fixed: false
+            nullable: true
+        startPage:
+            type: smallint
+            nullable: true
+            column: start_page
+        endPage:
+            type: smallint
+            nullable: true
+            column: end_page
+        ptype:
+            type: integer
+            unsigned: false
+            nullable: true
+        misc:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+        changed:
+            type: datetime
+            nullable: true
+        sameAs:
+            type: string
+            length: 8
+            fixed: false
+            nullable: true
+            column: same_as
+        pagePrefix:
+            type: string
+            length: null
+            fixed: true
+            nullable: true
+            column: page_prefix
+        miscPreamble:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: misc_preamble
+        miscPostamble:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+            column: misc_postamble
+        online:
+            type: date
+            nullable: true
+        virtualTheme:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: virtual_theme
+        talkId:
+            type: string
+            length: 8
+            fixed: false
+            nullable: true
+            column: talk_id
+        tlkStartp:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tlk_startp
+        tlkEndpg:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: tlk_endpg
+        virtualIssueOrder:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: virtual_issue_order
+        virtualOnly:
+            type: boolean
+            nullable: true
+            column: virtual_only
+        paperchain:
+            type: string
+            length: null
+            fixed: false
+            nullable: true
+        paperchainId:
+            type: string
+            length: null
+            fixed: false
+            nullable: true
+            column: paperchain_id
+        openAccess:
+            type: boolean
+            nullable: true
+            column: open_access
+        internalOnly:
+            type: boolean
+            nullable: false
+            column: internal_only
+    lifecycleCallbacks: {  }

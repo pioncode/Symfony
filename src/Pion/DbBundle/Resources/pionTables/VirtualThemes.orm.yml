@@ -1,0 +1,38 @@
+VirtualThemes:
+    type: entity
+    table: virtual_themes
+    fields:
+        virtualThemeId:
+            id: true
+            type: smallint
+            nullable: false
+            column: virtual_theme_id
+            generator:
+                strategy: SEQUENCE
+        journal:
+            type: string
+            length: null
+            fixed: true
+            nullable: false
+        themeTitle:
+            type: string
+            length: 50
+            fixed: false
+            nullable: false
+            column: theme_title
+        artistName:
+            type: text
+            nullable: true
+            column: artist_name
+        guesteds:
+            type: text
+            nullable: true
+        paperOrder:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: paper_order
+        openaccess:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

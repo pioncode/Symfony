@@ -1,0 +1,85 @@
+Issues:
+    type: entity
+    table: issues
+    fields:
+        key:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: SEQUENCE
+        volume:
+            type: smallint
+            nullable: false
+        issue:
+            type: smallint
+            nullable: false
+        issuetype:
+            type: smallint
+            nullable: false
+        heading:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+        subheading:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+        guesteds:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+        journal:
+            type: string
+            length: null
+            fixed: true
+            nullable: false
+        online:
+            type: smallint
+            nullable: true
+        themeEnd:
+            type: smallint
+            nullable: true
+            column: theme_end
+        themeStart:
+            type: smallint
+            nullable: true
+            column: theme_start
+        heading2:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+        subheading2:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+        guesteds2:
+            type: string
+            length: 200
+            fixed: false
+            nullable: true
+        themeStart2:
+            type: smallint
+            nullable: true
+            column: theme_start2
+        themeEnd2:
+            type: smallint
+            nullable: true
+            column: theme_end2
+        addendum:
+            type: string
+            length: 2000
+            fixed: false
+            nullable: true
+        ptype14:
+            type: string
+            length: 80
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

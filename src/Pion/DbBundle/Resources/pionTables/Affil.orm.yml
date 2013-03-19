@@ -1,0 +1,31 @@
+Affil:
+    type: entity
+    table: affil
+    fields:
+        key:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: SEQUENCE
+        paperid:
+            type: string
+            length: 50
+            fixed: false
+            nullable: false
+        affilnum:
+            type: smallint
+            nullable: false
+        address:
+            type: string
+            length: 1000
+            fixed: false
+            nullable: true
+        talkId:
+            type: string
+            length: 8
+            fixed: false
+            nullable: true
+            column: talk_id
+    lifecycleCallbacks: {  }

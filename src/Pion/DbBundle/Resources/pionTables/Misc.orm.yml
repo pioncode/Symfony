@@ -1,0 +1,45 @@
+Misc:
+    type: entity
+    table: misc
+    fields:
+        key:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: SEQUENCE
+        url:
+            type: string
+            length: 200
+            fixed: false
+            nullable: false
+        linkTitle:
+            type: string
+            length: 500
+            fixed: false
+            nullable: false
+            column: link_title
+        caption:
+            type: string
+            length: 10000
+            fixed: false
+            nullable: true
+        position:
+            type: smallint
+            nullable: false
+        paperid:
+            type: string
+            length: null
+            fixed: true
+            nullable: false
+        x:
+            type: smallint
+            nullable: true
+        y:
+            type: smallint
+            nullable: true
+        border:
+            type: smallint
+            nullable: true
+    lifecycleCallbacks: {  }

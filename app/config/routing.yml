@@ -1,3 +1,8 @@
+pion_db:
+    resource: "@PionDbBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 pion_iper:
     resource: "@PionIperBundle/Resources/config/routing.yml"
     prefix:   /
