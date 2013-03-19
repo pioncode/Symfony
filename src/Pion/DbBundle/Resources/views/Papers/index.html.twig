@@ -1,0 +1,89 @@
+<h1>Papers list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Paperid</th>
+            <th>Journal</th>
+            <th>Volume</th>
+            <th>Year</th>
+            <th>Issue</th>
+            <th>Title</th>
+            <th>Received</th>
+            <th>Abstract</th>
+            <th>Startpage</th>
+            <th>Endpage</th>
+            <th>Ptype</th>
+            <th>Misc</th>
+            <th>Changed</th>
+            <th>Sameas</th>
+            <th>Pageprefix</th>
+            <th>Miscpreamble</th>
+            <th>Miscpostamble</th>
+            <th>Online</th>
+            <th>Virtualtheme</th>
+            <th>Talkid</th>
+            <th>Tlkstartp</th>
+            <th>Tlkendpg</th>
+            <th>Virtualissueorder</th>
+            <th>Virtualonly</th>
+            <th>Paperchain</th>
+            <th>Paperchainid</th>
+            <th>Openaccess</th>
+            <th>Internalonly</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('papers_show', { 'id': entity.paperid }) }}">{{ entity.paperid }}</a></td>
+            <td>{{ entity.journal }}</td>
+            <td>{{ entity.volume }}</td>
+            <td>{{ entity.year }}</td>
+            <td>{{ entity.issue }}</td>
+            <td>{{ entity.title }}</td>
+            <td>{{ entity.received }}</td>
+            <td>{{ entity.abstract }}</td>
+            <td>{{ entity.startPage }}</td>
+            <td>{{ entity.endPage }}</td>
+            <td>{{ entity.ptype }}</td>
+            <td>{{ entity.misc }}</td>
+            <td>{% if entity.changed %}{{ entity.changed|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.sameAs }}</td>
+            <td>{{ entity.pagePrefix }}</td>
+            <td>{{ entity.miscPreamble }}</td>
+            <td>{{ entity.miscPostamble }}</td>
+            <td>{% if entity.online %}{{ entity.online|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.virtualTheme }}</td>
+            <td>{{ entity.talkId }}</td>
+            <td>{{ entity.tlkStartp }}</td>
+            <td>{{ entity.tlkEndpg }}</td>
+            <td>{{ entity.virtualIssueOrder }}</td>
+            <td>{{ entity.virtualOnly }}</td>
+            <td>{{ entity.paperchain }}</td>
+            <td>{{ entity.paperchainId }}</td>
+            <td>{{ entity.openAccess }}</td>
+            <td>{{ entity.internalOnly }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('papers_show', { 'id': entity.paperid }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('papers_edit', { 'id': entity.paperid }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('papers_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>

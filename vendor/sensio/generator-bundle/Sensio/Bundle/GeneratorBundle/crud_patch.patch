@@ -1,0 +1,109 @@
+ Generator/DoctrineCrudGenerator.php                         |   11 +++++------
+ Resources/skeleton/crud/views/edit.html.twig                |    2 +-
+ Resources/skeleton/crud/views/index.html.twig               |    2 +-
+ Resources/skeleton/crud/views/others/actions.html.twig      |    2 +-
+ .../skeleton/crud/views/others/record_actions.html.twig     |    4 ++--
+ 5 files changed, 10 insertions(+), 11 deletions(-)
+
+diff --git a/Generator/DoctrineCrudGenerator.php b/Generator/DoctrineCrudGenerator.php
+index 72eb9aa..31de986 100644
+--- a/Generator/DoctrineCrudGenerator.php
++++ b/Generator/DoctrineCrudGenerator.php
+@@ -62,12 +62,8 @@ class DoctrineCrudGenerator extends Generator
+         $this->routeNamePrefix = str_replace('/', '_', $routePrefix);
+         $this->actions = $needWriteActions ? array('index', 'show', 'new', 'edit', 'delete') : array('index', 'show');
+
+-        if (count($metadata->identifier) > 1) {
+-            throw new \RuntimeException('The CRUD generator does not support entity classes with multiple primary keys.');
+-        }
+-
+-        if (!in_array('id', $metadata->identifier)) {
+-            throw new \RuntimeException('The CRUD generator expects the entity object has a primary key field named "id" with a getId() method.');
++        if (count($metadata->identifier) != 1) {
++            throw new \RuntimeException('The CRUD generator does not support entity classes with multiple or no primary keys.');
+         }
+
+         $this->entity   = $entity;
+@@ -219,6 +215,7 @@ class DoctrineCrudGenerator extends Generator
+         $this->renderFile($this->skeletonDir, 'views/index.html.twig', $dir.'/index.html.twig', array(
+             'dir'               => $this->skeletonDir,
+             'entity'            => $this->entity,
++            'identifier'        => $this->metadata->identifier[0],
+             'fields'            => $this->metadata->fieldMappings,
+             'actions'           => $this->actions,
+             'record_actions'    => $this->getRecordActions(),
+@@ -237,6 +234,7 @@ class DoctrineCrudGenerator extends Generator
+         $this->renderFile($this->skeletonDir, 'views/show.html.twig', $dir.'/show.html.twig', array(
+             'dir'               => $this->skeletonDir,
+             'entity'            => $this->entity,
++            'identifier'        => $this->metadata->identifier[0],
+             'fields'            => $this->metadata->fieldMappings,
+             'actions'           => $this->actions,
+             'route_prefix'      => $this->routePrefix,
+@@ -269,6 +267,7 @@ class DoctrineCrudGenerator extends Generator
+     {
+         $this->renderFile($this->skeletonDir, 'views/edit.html.twig', $dir.'/edit.html.twig', array(
+             'dir'               => $this->skeletonDir,
++            'identifier'        => $this->metadata->identifier[0],
+             'route_prefix'      => $this->routePrefix,
+             'route_name_prefix' => $this->routeNamePrefix,
+             'entity'            => $this->entity,
+diff --git a/Resources/skeleton/crud/views/edit.html.twig b/Resources/skeleton/crud/views/edit.html.twig
+index 890f7ca..207cc3f 100644
+--- a/Resources/skeleton/crud/views/edit.html.twig
++++ b/Resources/skeleton/crud/views/edit.html.twig
+@@ -1,6 +1,6 @@
+ <h1>{{ entity }} edit</h1>
+
+-<form action="{{ "{{ path('"~ route_name_prefix ~"_update', { 'id': entity.id }) }}" }}" method="post" {{ "{{ form_enctype(edit_form) }}" }}>
++<form action="{{ "{{ path('"~ route_name_prefix ~"_update', { 'id': entity."~ identifier ~" }) }}" }}" method="post" {{ "{{ form_enctype(edit_form) }}" }}>
+     {{ "{{ form_widget(edit_form) }}" }}
+     <p>
+         <button type="submit">Edit</button>
+diff --git a/Resources/skeleton/crud/views/index.html.twig b/Resources/skeleton/crud/views/index.html.twig
+index 882984e..a07908d 100644
+--- a/Resources/skeleton/crud/views/index.html.twig
++++ b/Resources/skeleton/crud/views/index.html.twig
+@@ -19,7 +19,7 @@
+     {%- for field, metadata in fields %}
+         {%- if loop.first and ('show' in actions) %}
+
+-            <td><a href="{{ "{{ path('"~ route_name_prefix ~"_show', { 'id': entity.id }) }}" }}">{{ '{{ entity.'~ field|replace({'_': ''}) ~' }}' }}</a></td>
++            <td><a href="{{ "{{ path('"~ route_name_prefix ~"_show', { 'id': entity."~ identifier ~" }) }}" }}">{{ '{{ entity.'~ identifier ~' }}' }}</a></td>
+
+         {%- elseif metadata.type in ['date', 'datetime'] %}
+
+diff --git a/Resources/skeleton/crud/views/others/actions.html.twig b/Resources/skeleton/crud/views/others/actions.html.twig
+index 5137ff2..73a1a14 100644
+--- a/Resources/skeleton/crud/views/others/actions.html.twig
++++ b/Resources/skeleton/crud/views/others/actions.html.twig
+@@ -4,7 +4,7 @@
+                 {%- for action in record_actions %}
+
+                     <li>
+-                        <a href="{{ "{{ path('"~ route_name_prefix ~"_"~ action ~"', { 'id': entity.id }) }}" }}">{{ action }}</a>
++                        <a href="{{ "{{ path('"~ route_name_prefix ~"_"~ action ~"', { 'id': entity."~ identifier ~" }) }}" }}">{{ action }}</a>
+                     </li>
+
+                 {%- endfor %}
+diff --git a/Resources/skeleton/crud/views/others/record_actions.html.twig b/Resources/skeleton/crud/views/others/record_actions.html.twig
+index 13c2673..aaa0cc3 100644
+--- a/Resources/skeleton/crud/views/others/record_actions.html.twig
++++ b/Resources/skeleton/crud/views/others/record_actions.html.twig
+@@ -6,14 +6,14 @@
+     </li>
+ {% if ('edit' in actions) and (not hide_edit) %}
+     <li>
+-        <a href="{{ "{{ path('"~ route_name_prefix ~"_edit', { 'id': entity.id }) }}" }}">
++        <a href="{{ "{{ path('"~ route_name_prefix ~"_edit', { 'id': entity."~ identifier ~" }) }}" }}">
+             Edit
+         </a>
+     </li>
+ {% endif %}
+ {% if ('delete' in actions) and (not hide_delete) %}
+     <li>
+-        <form action="{{ "{{ path('"~ route_name_prefix ~"_delete', { 'id': entity.id }) }}" }}" method="post">
++        <form action="{{ "{{ path('"~ route_name_prefix ~"_delete', { 'id': entity."~ identifier ~" }) }}" }}" method="post">
+             {{ '{{ form_widget(delete_form) }}' }}
+             <button type="submit">Delete</button>
+         </form>

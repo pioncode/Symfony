@@ -1,0 +1,71 @@
+***************
+*** 62,73 ****
+          $this->routeNamePrefix = str_replace('/', '_', $routePrefix);
+          $this->actions = $needWriteActions ? array('index', 'show', 'new', 'edit', 'delete') : array('index', 'show');
+  
+-         if (count($metadata->identifier) > 1) {
+-             throw new \RuntimeException('The CRUD generator does not support entity classes with multiple primary keys.');
+-         }
+- 
+-         if (!in_array('id', $metadata->identifier)) {
+-             throw new \RuntimeException('The CRUD generator expects the entity object has a primary key field named "id" with a getId() method.');
+          }
+  
+          $this->entity   = $entity;
+--- 62,69 ----
+          $this->routeNamePrefix = str_replace('/', '_', $routePrefix);
+          $this->actions = $needWriteActions ? array('index', 'show', 'new', 'edit', 'delete') : array('index', 'show');
+  
++         if (count($metadata->identifier) != 1) {
++             throw new \RuntimeException('The CRUD generator does not support entity classes with multiple or no primary keys.');
+          }
+  
+          $this->entity   = $entity;
+***************
+*** 219,224 ****
+          $this->renderFile($this->skeletonDir, 'views/index.html.twig', $dir.'/index.html.twig', array(
+              'dir'               => $this->skeletonDir,
+              'entity'            => $this->entity,
+              'fields'            => $this->metadata->fieldMappings,
+              'actions'           => $this->actions,
+              'record_actions'    => $this->getRecordActions(),
+--- 215,221 ----
+          $this->renderFile($this->skeletonDir, 'views/index.html.twig', $dir.'/index.html.twig', array(
+              'dir'               => $this->skeletonDir,
+              'entity'            => $this->entity,
++             'identifier'        => $this->metadata->identifier[0],
+              'fields'            => $this->metadata->fieldMappings,
+              'actions'           => $this->actions,
+              'record_actions'    => $this->getRecordActions(),
+***************
+*** 237,242 ****
+          $this->renderFile($this->skeletonDir, 'views/show.html.twig', $dir.'/show.html.twig', array(
+              'dir'               => $this->skeletonDir,
+              'entity'            => $this->entity,
+              'fields'            => $this->metadata->fieldMappings,
+              'actions'           => $this->actions,
+              'route_prefix'      => $this->routePrefix,
+--- 234,240 ----
+          $this->renderFile($this->skeletonDir, 'views/show.html.twig', $dir.'/show.html.twig', array(
+              'dir'               => $this->skeletonDir,
+              'entity'            => $this->entity,
++             'identifier'        => $this->metadata->identifier[0],
+              'fields'            => $this->metadata->fieldMappings,
+              'actions'           => $this->actions,
+              'route_prefix'      => $this->routePrefix,
+***************
+*** 269,274 ****
+      {
+          $this->renderFile($this->skeletonDir, 'views/edit.html.twig', $dir.'/edit.html.twig', array(
+              'dir'               => $this->skeletonDir,
+              'route_prefix'      => $this->routePrefix,
+              'route_name_prefix' => $this->routeNamePrefix,
+              'entity'            => $this->entity,
+--- 267,273 ----
+      {
+          $this->renderFile($this->skeletonDir, 'views/edit.html.twig', $dir.'/edit.html.twig', array(
+              'dir'               => $this->skeletonDir,
++             'identifier'        => $this->metadata->identifier[0],
+              'route_prefix'      => $this->routePrefix,
+              'route_name_prefix' => $this->routeNamePrefix,
+              'entity'            => $this->entity,

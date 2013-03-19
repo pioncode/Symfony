@@ -1,0 +1,137 @@
+<h1>Papers</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Paperid</th>
+            <td>{{ entity.paperid }}</td>
+        </tr>
+        <tr>
+            <th>Journal</th>
+            <td>{{ entity.journal }}</td>
+        </tr>
+        <tr>
+            <th>Volume</th>
+            <td>{{ entity.volume }}</td>
+        </tr>
+        <tr>
+            <th>Year</th>
+            <td>{{ entity.year }}</td>
+        </tr>
+        <tr>
+            <th>Issue</th>
+            <td>{{ entity.issue }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ entity.title }}</td>
+        </tr>
+        <tr>
+            <th>Received</th>
+            <td>{{ entity.received }}</td>
+        </tr>
+        <tr>
+            <th>Abstract</th>
+            <td>{{ entity.abstract }}</td>
+        </tr>
+        <tr>
+            <th>Startpage</th>
+            <td>{{ entity.startPage }}</td>
+        </tr>
+        <tr>
+            <th>Endpage</th>
+            <td>{{ entity.endPage }}</td>
+        </tr>
+        <tr>
+            <th>Ptype</th>
+            <td>{{ entity.ptype }}</td>
+        </tr>
+        <tr>
+            <th>Misc</th>
+            <td>{{ entity.misc }}</td>
+        </tr>
+        <tr>
+            <th>Changed</th>
+            <td>{{ entity.changed|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Sameas</th>
+            <td>{{ entity.sameAs }}</td>
+        </tr>
+        <tr>
+            <th>Pageprefix</th>
+            <td>{{ entity.pagePrefix }}</td>
+        </tr>
+        <tr>
+            <th>Miscpreamble</th>
+            <td>{{ entity.miscPreamble }}</td>
+        </tr>
+        <tr>
+            <th>Miscpostamble</th>
+            <td>{{ entity.miscPostamble }}</td>
+        </tr>
+        <tr>
+            <th>Online</th>
+            <td>{{ entity.online|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Virtualtheme</th>
+            <td>{{ entity.virtualTheme }}</td>
+        </tr>
+        <tr>
+            <th>Talkid</th>
+            <td>{{ entity.talkId }}</td>
+        </tr>
+        <tr>
+            <th>Tlkstartp</th>
+            <td>{{ entity.tlkStartp }}</td>
+        </tr>
+        <tr>
+            <th>Tlkendpg</th>
+            <td>{{ entity.tlkEndpg }}</td>
+        </tr>
+        <tr>
+            <th>Virtualissueorder</th>
+            <td>{{ entity.virtualIssueOrder }}</td>
+        </tr>
+        <tr>
+            <th>Virtualonly</th>
+            <td>{{ entity.virtualOnly }}</td>
+        </tr>
+        <tr>
+            <th>Paperchain</th>
+            <td>{{ entity.paperchain }}</td>
+        </tr>
+        <tr>
+            <th>Paperchainid</th>
+            <td>{{ entity.paperchainId }}</td>
+        </tr>
+        <tr>
+            <th>Openaccess</th>
+            <td>{{ entity.openAccess }}</td>
+        </tr>
+        <tr>
+            <th>Internalonly</th>
+            <td>{{ entity.internalOnly }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('papers') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('papers_edit', { 'id': entity.paperid }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('papers_delete', { 'id': entity.paperid }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
