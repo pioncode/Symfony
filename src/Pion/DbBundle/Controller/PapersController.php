@@ -93,7 +93,7 @@ class PapersController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('papers_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('papers_show', array('id' => $entity->getPaperId())));
         }
 
         return array(

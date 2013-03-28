@@ -11,6 +11,7 @@ class PapersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('paperid')
             ->add('journal')
             ->add('volume')
             ->add('year')

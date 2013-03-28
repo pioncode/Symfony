@@ -15,10 +15,10 @@ class Papers
     /**
      * @var string
      *
-     * @ORM\Column(name="paperid", type="string", nullable=false)
+     * @ORM\Column(name="paperid", type="string", nullable=false, unique=true)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="papers_paperid_seq", allocationSize=1, initialValue=1)
+     * _@ORM\GeneratedValue(strategy="SEQUENCE")
+     * _@ORM\SequenceGenerator(sequenceName="papers_paperid_test_seq", allocationSize=1, initialValue=1)
      */
     private $paperid;
 
@@ -211,7 +211,18 @@ class Papers
      */
     private $internalOnly;
 
-
+    /**
+     * Set paperid
+     *
+     * @param string $journal
+     * @return Papers
+     */
+    public function setPaperid($paperid)
+    {
+        $this->paperid = $paperid;
+    
+        return $this;
+    }
 
     /**
      * Get paperid
