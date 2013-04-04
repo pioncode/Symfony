@@ -1,1 +1,1 @@
-/Library/PostgreSQL/9.2/bin/postgres "-D" "/usr/local/pgsql/data"
+/Library/PostgreSQL/9.2/bin/postgres "-D" "/Users/rory/Sites/spion/Symfony/postgres_test_data/"
